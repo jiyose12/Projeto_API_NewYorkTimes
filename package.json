@@ -1,0 +1,24 @@
+{
+  "name": "projeto_api_newyorktimes",
+  "version": "1.0.0",
+  "description": "Projeto JAVASCRIPT que faz uso da API do New York Times",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HelenaJuliana/Projeto_API_NewYorkTimes.git"
+  },
+  "author": "Jose Fernandes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HelenaJuliana/Projeto_API_NewYorkTimes/issues"
+  },
+  "homepage": "https://github.com/HelenaJuliana/Projeto_API_NewYorkTimes#readme"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Projeto_API_NewYorkTimes",
+  "homepage": "https://github.com/jiyose12/New-York-Times-API-site",
+  "authors": [
+    "José Fernandes"
+  ],
+  "description": "Projeto da disciplina de Javascript do curso de Sistemas para Internet IFPB",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
