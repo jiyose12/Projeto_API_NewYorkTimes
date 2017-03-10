@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Projeto JS NYT API</title>
+</head>
+<body>
+	<header>
+			
+	</header>
+	<section class="filtros">
+		<input type="text">
+		<input type="text">
+		<input type="text">
+
+		<checkbox></checkbox>
+		<checkbox></checkbox>
+	</section>
+
+	<section>
+		
+	</section>
+
+	 <script>
+    const ip = document.querySelector('#ip');
+    const getInfo = document.querySelector('#getInfo');
+    const tableInfo = document.querySelector('#tableInfo');
+    loadGetInfoEvent();
+    function loadGetInfoEvent(){
+      getInfo.onclick = function(){
+        loadGetInfo();
+      }
+    }
+    function loadGetInfo(){
+      let url = `http://ipinfo.io/${ip.value}/json`;
+      getJSON( url, loadTableInfo );
+    }
+    function loadTableInfo( json ){
+      let ipInfo = JSON.parse( json );
+      
+    }
+    function getJSON( url, callback ){
+      let xhr = new XMLHttpRequest();
+      xhr.onload = () => callback( xhr.responseText );
+      xhr.open( 'GET', url );
+      xhr.send();
+    }
+  </script>
+</body>
+</html>
