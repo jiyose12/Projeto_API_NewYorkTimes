@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>JS Project NYT API</title>
+
+  <link href="css/plugins.css" rel="stylesheet">
+  <link href="css/geral.css" rel="stylesheet">
+
 </head>
 <body onload="loadGetInfo()">
 	<header>
@@ -45,21 +49,27 @@
 	</section>
 
 	 <section id="noticias_recentes">
-    	
+    <div class="container">
+      <ul class="itens">
+        
+      </ul>
+    </div>
     </section>
 
-	 <script>
-    const pesquisa = document.querySelector('#pesquisa');
+ <script src="dist/bundle.js"></script>
+
+<script type="text/javascript">
+  const pesquisa = document.querySelector('#pesquisa');
     const inicio_data = document.querySelector('#inicio_data');
     const fim_data = document.querySelector('#fim_data');
     const botaopesquisa = document.querySelector('#botaopesquisa');
-    const noticias_recentes = document.querySelector('#noticias_recentes');
-    /*loadGetInfoEvent();
+    const noticias_recentes = document.querySelector('#noticias_recentes .container .itens');
+    loadGetInfoEvent();
     function loadGetInfoEvent(){
-    	botaopesquisa.onclick = function(){
+      botaopesquisa.onclick = function(){
         loadGetInfo();
       }
-    }*/
+    }
 
     function loadGetInfo(){
       let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=8ff00e2c3ac145d093c95d8a403071fc&sort=newest`;
@@ -71,19 +81,19 @@
       //Inserindo no html
       let noticiasRecentes = '';
       for(let field of searchinfo.response.docs){
-      	noticiasRecentes += `<ul><li>${field.headline.main}</li><li>${field.snippet}</li><li>${field.web_url}</li>${field.pub_date}</ul>`;
+        noticiasRecentes += `<li>${field.headline.main}</li><li>${field.snippet}</li><li>${field.web_url}</li><li>${field.pub_date}</li>`;
 
-      	noticias_recentes.innerHTML = noticiasRecentes;
+        noticias_recentes.innerHTML = noticiasRecentes;
       }
       //fim da inserção no html
     }
-    function getJSON( url, callback ){
+     function getJSON( url, callback ){
       let xhr = new XMLHttpRequest();
       xhr.onload = () => callback( xhr.responseText );
       xhr.open( 'GET', url );
       xhr.send();
     }
-    //&q=${pesquisa.value}&begin_date=${inicio_data.value}&end_date=${fim_data.value}
-  </script>
+
+</script>
 </body>
 </html>

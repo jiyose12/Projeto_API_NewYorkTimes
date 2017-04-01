@@ -74,16 +74,16 @@
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+      value: true
 });
 exports.getJSON = getJSON;
 function getJSON(url, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function () {
-    callback(xhr.responseText);
-  };
-  xhr.open('get', url);
-  xhr.send();
+      var xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+            return callback(xhr.responseText);
+      };
+      xhr.open('GET', url);
+      xhr.send();
 }
 
 /***/ }),
@@ -95,29 +95,57 @@ function getJSON(url, callback) {
 
 var _ajax = __webpack_require__(0);
 
-var cep = document.querySelector('#cep');
-var uf = document.querySelector('#uf');
-var cidade = document.querySelector('#cidade');
-
-loadCepEvent();
-
-function loadCepEvent() {
-  cep.onblur = function () {
-    loadCepInfo();
+var pesquisa = document.querySelector('#pesquisa');
+var inicio_data = document.querySelector('#inicio_data');
+var fim_data = document.querySelector('#fim_data');
+var botaopesquisa = document.querySelector('#botaopesquisa');
+var noticias_recentes = document.querySelector('#noticias_recentes .container .itens');
+loadGetInfoEvent();
+function loadGetInfoEvent() {
+  botaopesquisa.onclick = function () {
+    loadGetInfo();
   };
 }
 
-function loadCepInfo() {
-  var cepValue = cep.value;
-  var url = 'https://viacep.com.br/ws/' + cepValue + '/json/';
-  (0, _ajax.getJSON)(url, loadCepFields);
+function loadGetInfo() {
+  var url = 'https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=8ff00e2c3ac145d093c95d8a403071fc&sort=newest';
+  (0, _ajax.getJSON)(url, loadSearchInfo);
+}
+function loadSearchInfo(json) {
+  var searchinfo = JSON.parse(json);
+  console.log(searchinfo);
+  //Inserindo no html
+  var noticiasRecentes = '';
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = searchinfo.response.docs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var field = _step.value;
+
+      noticiasRecentes += '<li>' + field.headline.main + '</li><li>' + field.snippet + '</li><li>' + field.web_url + '</li><li>' + field.pub_date + '</li>';
+
+      noticias_recentes.innerHTML = noticiasRecentes;
+    }
+    //fim da inserção no html
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
 }
 
-function loadCepFields(json) {
-  var cepInfo = JSON.parse(json);
-  uf.value = cepInfo.uf;
-  cidade.value = cepInfo.localidade;
-}
+//&q=${pesquisa.value}&begin_date=${inicio_data.value}&end_date=${fim_data.value}
 
 /***/ })
 /******/ ]);
