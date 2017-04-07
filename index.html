@@ -10,11 +10,11 @@
   <link href="css/geral.css" rel="stylesheet">
 
 </head>
-<body onload="loadGetInfo()">
+<body >
 	<header>
 	<div class="container">
 			<div class="logo">
-				<img src="images/LogoOngBayeux.png" alt="Logo Topo Tag">
+				<img src="images/ifpb-logo.jpg" alt="Logo Topo Tag">
 			</div>
 			
 			<div class="links">
@@ -39,61 +39,45 @@
 	</header>
 
 	<section class="filtros">
-		<input id="pesquisa" placeholder="Key Word"type="text">
-		<input id="inicio_data" placeholder="DDMMAAAA" type="text">
-		<input id="fim_data" placeholder="DDMMAAAA" type="text">
-    <button id="botaopesquisa">Pesquisar</button>
+    <label for="pesquisa">Search</label>
+		<input id="pesquisa" placeholder="Key Word" type="text">
 
-		<checkbox>Newest</checkbox>
-		<checkbox>Oldest</checkbox>
+     <label for="inicio_data">Begin Date</label>
+		<input id="inicio_data" placeholder="YYYYMMDD" type="text">
+
+    <label for="fim_data">End Date</label>
+		<input id="fim_data" placeholder="YYYYMMDD" type="text">
+
+    <div class="checkbox">
+      <label class="checkbox1">
+        <input type="checkbox"> Oldest
+      </label>
+      <label class="checkbox2">
+        <input type="checkbox"> Newest
+      </label>
+   </div>
+   
+    <button id="botaopesquisa">Pesquisar</button>
 	</section>
 
 	 <section id="noticias_recentes">
-    <div class="container">
-      <ul class="itens">
-        
-      </ul>
-    </div>
+     <h2>Recent News</h2>
+  
+      <div class="container">
+        <ul class="itens">
+          
+        </ul>
+      </div>
+    </section>
+
+    <section id="consulta_noticias">
+       <div class="container">
+        <ul class="itens">
+          
+        </ul>
     </section>
 
  <script src="dist/bundle.js"></script>
 
-<script type="text/javascript">
-  const pesquisa = document.querySelector('#pesquisa');
-    const inicio_data = document.querySelector('#inicio_data');
-    const fim_data = document.querySelector('#fim_data');
-    const botaopesquisa = document.querySelector('#botaopesquisa');
-    const noticias_recentes = document.querySelector('#noticias_recentes .container .itens');
-    loadGetInfoEvent();
-    function loadGetInfoEvent(){
-      botaopesquisa.onclick = function(){
-        loadGetInfo();
-      }
-    }
-
-    function loadGetInfo(){
-      let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=8ff00e2c3ac145d093c95d8a403071fc&sort=newest`;
-      getJSON( url, loadSearchInfo );
-    }
-    function loadSearchInfo( json ){
-      let searchinfo = JSON.parse( json );
-      console.log(searchinfo);
-      //Inserindo no html
-      let noticiasRecentes = '';
-      for(let field of searchinfo.response.docs){
-        noticiasRecentes += `<li>${field.headline.main}</li><li>${field.snippet}</li><li>${field.web_url}</li><li>${field.pub_date}</li>`;
-
-        noticias_recentes.innerHTML = noticiasRecentes;
-      }
-      //fim da inserção no html
-    }
-     function getJSON( url, callback ){
-      let xhr = new XMLHttpRequest();
-      xhr.onload = () => callback( xhr.responseText );
-      xhr.open( 'GET', url );
-      xhr.send();
-    }
-
-</script>
 </body>
 </html>

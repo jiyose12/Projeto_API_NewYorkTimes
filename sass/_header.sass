@@ -1,0 +1,66 @@
+header
+	+clearfix
+	position: relative
+	.logo
+		float: left
+		margin: 30px 0 0 
+		img
+			width: 300px
+			height: 150px
+
+	.links
+		float: right
+		margin: 35px 0 0
+
+		nav,
+		.social
+			display: inline-block
+
+			ul
+				li
+					display: inline-block
+					margin: 0 20px 0 0
+					a
+						color: $preto
+						text-transform: uppercase
+
+						&:hover
+							&:after
+								width: 40%
+
+						&:after
+							content: ""
+							display: table
+							margin: 5px auto 0
+							width: 0%
+							height: 2px
+							background-color: $verde
+							+transition(.3s)
+
+		.social
+			li
+				display: inline-block
+				margin: 0 5px 0 0
+				a
+					color: $preto
+					display: block
+					border: 1px solid $verde
+					padding: 5px
+					width: 25px
+					height: 25px
+					line-height: 12px
+					text-align: center
+					+border-radius(120px)
+
+	h1
+		text-transform: uppercase
+		text-align: center
+		clear: both
+		margin: 190px auto 30px auto !important
+		font-weight: $light
+		border: 3px solid $preto
+		padding: 20px
+		display: table
+		+breakpoint($celular)
+			+font-size(40px)
+			
